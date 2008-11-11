@@ -22,7 +22,7 @@ cancelHistoricalData(conn,tickerId)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{conn}{A \code{tws} connection object.}
+  \item{conn}{A \code{twsConnect} object.}
   \item{Contract}{A \code{twsContract} object.}
   \item{endDateTime}{End date/time for request as a POSIXct datetime.}
   \item{barSize}{Specifies the size of the bars that will be returned
