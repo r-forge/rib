@@ -1,0 +1,11 @@
+Package: RIB
+Type: Package
+Title: An R interface to Interactive Brokers trading platform
+Version: 0.1.0
+Date: 2008-11-05
+Depends: rJava, zoo
+Author: Adrian A. Dragulescu
+Maintainer: Adrian A. Dragulescu <adrian.dragulescu@gmail.com>
+Description: Provides R access to Interactive Brokers Trader Workstation API.
+License: GPL
+
