@@ -11,7 +11,7 @@ if successful.
 \usage{
 reqHistoricalData(conn, 
                   Contract,
-                  endDateTime,
+                  endDateTime = Sys.time(),
                   barSize = "1 day",
                   duration = "1 M",
                   whatToShow = "MIDPOINT", 
