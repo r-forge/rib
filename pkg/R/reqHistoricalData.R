@@ -1,4 +1,4 @@
-reqHistoricalData <- function(tws, Contract, endDateTime,
+reqHistoricalData <- function(tws, Contract, endDateTime=Sys.time(),
   barSize = "1 day", duration = "1 M", 
   whatToShow = "MIDPOINT", reqId = as.integer(1),
   useRTH = as.integer(1))

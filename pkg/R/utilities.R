@@ -34,7 +34,7 @@ clearMsg <- function(tws) tws$reference$clearMsgBuffer()
 #######################################################################
 # Check if a historical prices request has ended 
 #
-.hasRequestEnded <- function(msg, reqID)
+.hasRequestEnded <- function(msg, reqId)
 {
    aux <- .extractID(msg, reqId)
    ind <- grep("date='finished", aux[length(aux)])
