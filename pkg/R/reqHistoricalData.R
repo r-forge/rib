@@ -30,8 +30,10 @@ reqHistoricalData <- function(tws, Contract, endDateTime=Sys.time(),
 
    waiting <- TRUE
    while (waiting){
-     Sys.sleep(2)              # wait a bit
-     msg <- getMsg(tws)   
+     Sys.sleep(1)              # wait a bit
+     msg <- getMsg(tws)
+     if (length(grep("ERROR:", msg)) > 0)
+       stop(msg)
      waiting <- !.hasRequestEnded(msg, reqId)
    }
 
