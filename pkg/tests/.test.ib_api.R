@@ -17,23 +17,22 @@ name <- "RIB"
 version <- "0.1.1"
 build.package(name, version)
 
-shell("Rcmd build --force --binary H:/user/R/Adrian/rib/pkg/")
+## shell("Rcmd build --force --binary H:/user/R/Adrian/rib/pkg/")
 
-
-## Sys.setenv(TZ="")
 ## require(rJava); require(zoo)
 ## setwd("H:/user/R/Adrian/RIBS3/R/")
 ## source(".formatMessages.R")
 
 #source("H:/user/R/Adrian/RIBS3/R/utilities.R")
 
-cd S:\All\Risk\Software\R\R-2.8.0\bin
-Rcmd build --force --binary H:/user/R/Adrian/rib/pkg/
+## cd S:\All\Risk\Software\R\R-2.8.0\bin
+## Rcmd build --force --binary H:/user/R/Adrian/rib/pkg/
   
-install.packages(
-  pkgs="S:/All/Risk/Software/R/R-2.8.0/bin/RIB_0.1.0.zip",
-  repos=NULL)
+## install.packages(
+##   pkgs="S:/All/Risk/Software/R/R-2.8.0/bin/RIB_0.1.0.zip",
+##   repos=NULL)
 
+Sys.setenv(TZ="")
 require("RIB")
 tws <- twsConnect()
 
@@ -143,6 +142,11 @@ placeOrder(tws, orderId, ctr, ord)
 #source("getNextOrderID.R")
 getNextOrderId(tws, 6)
 
+#######################################################
+# 
+
+
+
 
 slotNames(ord)
 
@@ -155,6 +159,8 @@ ord <- twsOrder(orderId=orderId, totalQuantity=100, action="BUY",
 
 
 msg <- getMsg(tws)
+
+
 
 
 
@@ -226,25 +232,4 @@ ctr <- twsContract(symbol="YHOO")
 
 ######################################################################
 ######################################################################
-MM <- read.csv("S:/Risk/Temporary/CollateralAllocation/20081010/SourceData/AllPos_AGMTH_preibt_10OCT08.csv")
-
-MM <- subset(MM, counterparty=="BGEMD")
-MM <- subset(MM, counterparty=="ENECSFB")
-MM <- subset(MM, counterparty=="CCT")  # cinergy capital and trading 
-write.csv(MM, file="junk.csv", row.names=FALSE)
-
-MM <- MM[-grep(" VLRCST ", MM$commod_curve),]
-
-ind <- which(regexpr("COMMOD PW", MM$commod_curve)==1)
-MM$commod_curve[ind]
-
-
-tapply(MM$position[ind], MM$Marginal[ind], sum, na.rm=TRUE)
-
-
-
-bux <- unique(MM[,c("Credit_CSA", "Marginal")])
-aux <- subset(MM, Marginal=="UnMargin")
-unique(aux[,c("book_name", "PARENTPORTFOLIO8")])
-
 
