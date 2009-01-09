@@ -91,10 +91,44 @@ website.
 \seealso{ \code{\link{twsContract}}, \code{\link{twsConnect}} }
 \examples{
 \dontrun{
-tws <- twsConnect()
-contract <- twsEquity('QQQQ','SMART','ISLAND')
+end.dt <- Sys.time()
 
-reqHistoricalData(tws,Contract=contract)
+# Get EQUITY data default call: daily
+ctr <- twsContract(symbol="GOOG")
+reqHistoricalData(tws, ctr, end.dt, reqId=2)
+
+# Get EQUITY data: intraday data 
+HD <- reqHistoricalData(tws, ctr, end.dt, duration="1 D",
+  barSize="1 min", reqId=3)
+
+# Get OPTIONS data.
+# Note: historical daily data is not available for options, so you need
+# an intradaily barSize.  Multiplier is needed.  Exchange info is not
+# necessary as long as there is no conflict, and currency is specified. 
+ctr <- twsContract(symbol="YHOO", secType="OPT", expiry="201001",
+  strike=15.0, right="PUT", currency="USD", multiplier=100)
+HD <- reqHistoricalData(tws, ctr, end.dt, barSize="1 hour", reqId=4)
+
+# Get FUTURES data.  The exchange is important. 
+ctr <- twsContract(symbol="YM", secType="FUT", expiry="200906",
+                   exchange="ECBOT", primaryExchange="ECBOT")
+HD <- reqHistoricalData(tws, ctr)
+
+# Get FUTURES data.  The exchange is important. 
+ctr <- twsContract(symbol="ES", secType="FUT", expiry="200906",
+                   exchange="GLOBEX", primaryExchange="GLOBEX")
+HD <- reqHistoricalData(tws, ctr, barSize="30 mins", useRTH=0)
+
+# Get Natural Gas from NYMEX
+ctr <- twsContract(symbol="NG", secType="FUT", expiry="200903",
+                   exchange="NYMEX", primaryExchange="NYMEX")
+HD <- reqHistoricalData(tws, ctr, barSize="30 mins", useRTH=0)
+
+# get FX data
+ctr <- twsContract(symbol="EUR", secType="CASH", 
+                   exchange="IDEALPRO", primaryExchange="IDEALPRO")
+HD <- reqHistoricalData(tws, ctr, barSize="30 mins", useRTH=0)
+
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -14,7 +14,7 @@ twsContract(symbol,
             currency="USD",
             localSymbol="",
             primaryExchange="SMART",
-            include_expired=FALSE,
+            includeExpired=FALSE,
             multiplier=1,
             comboLegsDescription="",
             comboLegs,
@@ -66,7 +66,7 @@ contract <- twsContract("AAPL")
 
 # AAPL option
 contract <- twsContract("AAPL", secType="OPT", expiry="201001",
-  strike=100, right="CALL")
+  strike=100, right="CALL", multiplier=100, currency="USD")
 
 }
 \keyword{ utilities }
