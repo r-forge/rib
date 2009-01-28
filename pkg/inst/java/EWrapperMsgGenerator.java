@@ -6,44 +6,45 @@ import java.util.Date;
 public class EWrapperMsgGenerator extends AnyWrapperMsgGenerator {
     public static final String SCANNER_PARAMETERS = "SCANNER PARAMETERS:";
     public static final String FINANCIAL_ADVISOR = "FA:";
-    
-	static public String tickPrice( int tickerId, int field, double price, int canAutoExecute) {
-    	return "id=" + tickerId + "  " + TickType.getField( field) + "=" + price + " " + 
-        ((canAutoExecute != 0) ? " canAutoExecute" : " noAutoExecute");
+   
+    static public String tickPrice( int tickerId, int field, double price, int canAutoExecute) {
+    	return "id='" + tickerId + "' " + TickType.getField( field) + "='" + price + "' " + 
+        ((canAutoExecute != 0) ? " canAutoExecute " : " noAutoExecute ");
     }
 	
     static public String tickSize( int tickerId, int field, int size) {
-    	return "id=" + tickerId + "  " + TickType.getField( field) + "=" + size;
+    	return "id='" + tickerId + "' " + TickType.getField( field) + "='" + size + "' ";
     }
     
     static public String tickOptionComputation( int tickerId, int field, double impliedVol,
     		double delta, double modelPrice, double pvDividend) {
-    	String toAdd = "id=" + tickerId + "  " + TickType.getField( field) +
-		   ": vol = " + ((impliedVol >= 0 && impliedVol != Double.MAX_VALUE) ? Double.toString(impliedVol) : "N/A") +
-		   " delta = " + ((Math.abs(delta) <= 1) ? Double.toString(delta) : "N/A");
+    	String toAdd = "id='" + tickerId + "' " + TickType.getField( field) +
+	  "' ivol='" + ((impliedVol >= 0 && impliedVol != Double.MAX_VALUE) ? Double.toString(impliedVol) : "NA") +
+	  "' delta='" + ((Math.abs(delta) <= 1) ? Double.toString(delta) : "NA") + "' ";
     	if (field == TickType.MODEL_OPTION) {
-    		toAdd += ": modelPrice = " + ((modelPrice >= 0 && modelPrice != Double.MAX_VALUE) ? Double.toString(modelPrice) : "N/A");
-    		toAdd += ": pvDividend = " + ((pvDividend >= 0 && pvDividend != Double.MAX_VALUE) ? Double.toString(pvDividend) : "N/A");
+ 	  toAdd += "modelPrice='" + ((modelPrice >= 0 && modelPrice != Double.MAX_VALUE) ? Double.toString(modelPrice) : "NA");
+    	  toAdd += "' pvDividend='" + ((pvDividend >= 0 && pvDividend != Double.MAX_VALUE) ? Double.toString(pvDividend) : "NA") + 
+                   "' ";
     	}
-		return toAdd;
+	return toAdd;
     }
     
     static public String tickGeneric(int tickerId, int tickType, double value) {
-    	return "id=" + tickerId + "  " + TickType.getField( tickType) + "=" + value;
+    	return "id='" + tickerId + "' " + TickType.getField( tickType) + "='" + value + "' ";
     }
     
     static public String tickString(int tickerId, int tickType, String value) {
-    	return "id='" + tickerId + " " + TickType.getField( tickType) + "=" + value;
+    	return "id='" + tickerId + "' " + TickType.getField( tickType) + "='" + value + "' ";
     }
     
     static public String tickEFP(int tickerId, int tickType, double basisPoints,
 			String formattedBasisPoints, double impliedFuture, int holdDays,
 			String futureExpiry, double dividendImpact, double dividendsToExpiry) {
-    	return "id=" + tickerId + "  " + TickType.getField(tickType)
-		+ ": basisPoints = " + basisPoints + "/" + formattedBasisPoints
-		+ " impliedFuture = " + impliedFuture + " holdDays = " + holdDays +
-		" futureExpiry = " + futureExpiry + " dividendImpact = " + dividendImpact +
-		" dividends to expiry = "	+ dividendsToExpiry;
+    	return "id='" + tickerId + "' " + TickType.getField(tickType)
+		+ ":basisPoints='" + basisPoints + "/" + formattedBasisPoints
+		+ "' impliedFuture='" + impliedFuture + "' holdDays='" + holdDays 
+		+ "' futureExpiry='" + futureExpiry + "' dividendImpact='" + dividendImpact
+		+ "' dividendsToExpiry='" + dividendsToExpiry + "'";
     }
     
     static public String orderStatus( int orderId, String status, int filled, int remaining,
@@ -292,12 +293,12 @@ public class EWrapperMsgGenerator extends AnyWrapperMsgGenerator {
                       					double close, int volume, int count, double WAP, boolean hasGaps) {
     	return "id='" + reqId +
         "' date='" + date +
-        "' open='" + open +
-        "' high='" + high +
-        "' low='" + low +
-        "' close='" + close +
-        "' volume='" + volume +
-        "' count='" + count +
+        "' Open='" + open +
+        "' High='" + high +
+        "' Low='" + low +
+        "' Close='" + close +
+        "' Volume='" + volume +
+        "' Count='" + count +
         "' WAP='" + WAP +
         "' hasGaps='" + hasGaps + "'";
     }
