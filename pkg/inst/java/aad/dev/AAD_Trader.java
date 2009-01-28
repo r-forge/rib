@@ -70,6 +70,17 @@ public class AAD_Trader implements EWrapper{
 //      this.Msg="";  // clear the buffer   
       socket.reqAccountUpdates(subscribe, acctCode);
     }
+   
+    public void reqMktData(int tickerId, Contract contract, 
+      String genericTickList, boolean snapshot)
+    {    
+      socket.reqMktData(tickerId, contract, genericTickList, snapshot);
+    }
+    
+    public void cancelMktData(int tickerId)
+    {
+      socket.cancelMktData(tickerId);
+    }
     
     public void closeConnection(){
       socket.eDisconnect();
