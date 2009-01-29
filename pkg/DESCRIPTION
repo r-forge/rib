@@ -1,8 +1,8 @@
 Package: RIB
 Type: Package
 Title: An R interface to Interactive Brokers trading platform
-Version: 0.1.0
-Date: 2008-11-05
+Version: 0.1.4
+Date: 2009-01-29
 Depends: rJava, zoo
 Author: Adrian A. Dragulescu
 Maintainer: Adrian A. Dragulescu <adrian.dragulescu@gmail.com>
